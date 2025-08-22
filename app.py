@@ -14,6 +14,7 @@ import mlflow
 from mlflow.models.signature import infer_signature
 import mlflow.sklearn
 
+os.environ['MLFLOW_TRACKING_URI'] = "http://ec2-51-21-202-224.eu-north-1.compute.amazonaws.com:5000/"
 
 # initlaize logging
 logging.basicConfig(level=logging.WARN)
@@ -74,7 +75,7 @@ if __name__ == "__main__":
         mlflow.log_metric("r2", r2)
 
         # for the remote server AWS we need to do the setup
-        remote_server_uri = ""
+        remote_server_uri = "http://ec2-51-21-202-224.eu-north-1.compute.amazonaws.com:5000/"
         mlflow.set_tracking_uri(remote_server_uri)
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
